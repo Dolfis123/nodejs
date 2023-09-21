@@ -1,0 +1,106 @@
+import React, { useState, useRef } from "react";
+import axios from "axios";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
+import { useNavigate } from "react-router-dom";
+
+function TambahUcapan() {
+  const navigate = useNavigate();
+  // const quillRefUcapan = useRef();
+
+  const [data, setData] = useState({
+    pesan: "",
+    image: null,
+  });
+
+  const handleChangePesan = (value) => {
+    setData({ ...data, pesan: value });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData = new FormData();
+    formData.append("pesan", data.pesan);
+    formData.append("image", data.image);
+    axios
+      .post("http://localhost:3040/ucapan", formData)
+      .then((res) => {
+        console.log("Data berhasil ditambahkan: ", res.data);
+        navigate("/beranda1");
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleLogout = () => {
+    const confirmLogout = window.confirm(
+      "Apakah Anda yakin ingin keluar dari halaman ini?"
+    );
+
+    if (confirmLogout) {
+      axios
+        .get("http://localhost:3040/logout", { withCredentials: true })
+        .then((res) => {
+          navigate("/");
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
+  return (
+    <div>
+      <div className="d-flex flex-column align-items-center pt-4 text-white">
+        <h2>
+          <span className="text-white">Tambah Penduduk</span>
+        </h2>
+        <form className="row g-3 w-50" onSubmit={handleSubmit}>
+          <div className="col-12">
+            <label htmlFor="inputPesan" className="form-label text-black">
+              Pesan
+            </label>
+            <ReactQuill
+              id="inputPesan"
+              value={data.pesan}
+              onChange={handleChangePesan}
+              theme="snow"
+              style={{ color: "black", width: "65%", height: "280px" }}
+            />
+            <br />
+            <br />
+          </div>
+          <div className="col-12">
+            <label htmlFor="inputImage" className="form-label text-white">
+              Image
+            </label>
+            <input
+              type="file"
+              className="form-control"
+              id="inputImage"
+              onChange={(e) => setData({ ...data, image: e.target.files[0] })}
+              style={{ width: "50%", height: "50px" }}
+            />
+          </div>
+          <div className="col-15 text-white">
+            <br />
+            <div className="col-15 d-flex justify-content-between">
+              <button type="submit" className="btn btn-primary order-1">
+                Buat
+              </button>
+              <button
+                type="button"
+                className="btn btn-success rounded btn-center order-2"
+                onClick={() => navigate("/beranda1")}
+              >
+                Kembali
+              </button>
+            </div>
+          </div>
+        </form>
+        <br />
+        <br />
+      </div>
+    </div>
+  );
+}
+
+export default TambahUcapan;
