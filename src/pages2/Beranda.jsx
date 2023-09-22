@@ -97,7 +97,7 @@ function Beranda() {
                   style={{ justifyContent: "center", marginTop: "15px" }}
                   width="58px"
                   height="63px"
-                  src="./public/img/logo mkw 2.png"
+                  src="/img/logo mkw 2.png"
                   alt="logo"
                 />
                 <span> Kelurahan Amban</span>
@@ -178,8 +178,14 @@ function Beranda() {
                     </h1>
 
                     <a
+                      href="/informasi"
+                      class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"
+                    >
+                      Berita Terbaru
+                    </a>
+                    <a
                       href="/kontak"
-                      className="btn btn-outline-light py-md-3 px-md-5 animated slideInRight"
+                      class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight"
                     >
                       Kontak Kami
                     </a>
@@ -207,10 +213,15 @@ function Beranda() {
                     <h1 className="display-1 text-white mb-md-4 animated zoomIn">
                       Kelurahan Amban
                     </h1>
-
+                    <a
+                      href="/informasi"
+                      class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft"
+                    >
+                      Berita Terbaru
+                    </a>
                     <a
                       href="/kontak"
-                      className="btn btn-outline-light py-md-3 px-md-5 animated slideInRight"
+                      class="btn btn-outline-light py-md-3 px-md-5 animated slideInRight"
                     >
                       Kontak Kami
                     </a>

@@ -76,7 +76,7 @@ function Dashboard() {
       <nav id="sidebar">
         <div className="sidebar-header animated slideInDown">
           <h3>
-            <img src="./public/img/logo mkw.png" alt="logo" />
+            <img src="/img/logo mkw.png" alt="logo" />
             Lurah Amban
           </h3>
         </div>

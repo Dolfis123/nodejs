@@ -77,7 +77,7 @@ function Penduduk2() {
                   style={{ justifyContent: "center", marginTop: "15px" }}
                   width="58px"
                   height="63px"
-                  src="./public/img/logo mkw 2.png"
+                  src="/img/logo mkw 2.png"
                   alt="logo"
                 />
                 <span> Lurah Amban</span>
