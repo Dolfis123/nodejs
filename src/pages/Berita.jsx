@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 
 function Berita() {
+  const navigate = useNavigate();
   const [berita, setBerita] = useState([]);
 
   useEffect(() => {
