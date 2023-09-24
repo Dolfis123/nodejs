@@ -496,6 +496,11 @@ h6,
   background-size: cover;
 }
 
+.bg-informasi {
+  background: center center no-repeat;
+  background-size: cover;
+}
+
 .link-animated a {
   transition: 0.5s;
 }

@@ -1,8 +1,10 @@
 import React from "react";
+import { Card, Row, Col, Form, Button } from "react-bootstrap";
 function Kontak() {
   return (
-    <div>
+    <div className="bg-body-secondary">
       {/* <!-- Topbar Start --> */}
+
       <div
         className="container-fluid px-5 d-none d-lg-block"
         style={{ backgroundColor: "#0F2C59" }}
@@ -67,7 +69,7 @@ function Kontak() {
       </div>
       {/* <!-- Topbar End --> */}
       {/* Navbar Start */}
-      <div class="container-fluid position-relative p-0">
+      <div className="container-fluid position-relative p-0">
         <nav className="navbar navbar-expand-lg navbar-dark px-3 py-3 py-lg-0">
           <a href="#" className="navbar-brand p-0">
             <pre>
@@ -144,127 +146,132 @@ function Kontak() {
 
       <div className="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div className="container py-5">
-          <div
-            className="section-title text-center position-relative pb-3 mb-5 mx-auto"
-            style={{ maxWidth: "600px" }}
-          >
-            <h5 className="fw-bold text-primary text-uppercase">Kontak Kami</h5>
-          </div>
+          <Card className="p-4">
+            <div
+              className="section-title text-center position-relative pb-3 mb-5 mx-auto"
+              style={{ maxWidth: "600px" }}
+            >
+              <h5 className="fw-bold text-primary text-uppercase">
+                Kontak Kami
+              </h5>
+            </div>
 
-          <div className="row g-5 mb-5">
-            <div className="col-lg-4">
-              <div
-                className="d-flex align-items-center wow fadeIn"
-                data-wow-delay="0.1s"
-              >
+            <Row className="g-5 mb-5">
+              <Col lg={4}>
                 <div
-                  className="bg-primary d-flex align-items-center justify-content-center rounded"
-                  style={{ width: "60px", height: "60px" }}
+                  className="d-flex align-items-center wow fadeIn"
+                  data-wow-delay="0.1s"
                 >
-                  <i className="fa fa-phone-alt text-white"></i>
+                  <div
+                    className="bg-primary d-flex align-items-center justify-content-center rounded"
+                    style={{ width: "60px", height: "60px" }}
+                  >
+                    <i className="fa fa-phone-alt text-white"></i>
+                  </div>
+                  <div className="ps-4">
+                    <h5 className="mb-2">Hubungi nomor kami</h5>
+                    <h4 className="text-primary mb-0">+012 345 6789</h4>
+                  </div>
                 </div>
-                <div className="ps-4">
-                  <h5 className="mb-2">Hubungi nomor kami</h5>
-                  <h4 className="text-primary mb-0">+012 345 6789</h4>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div
-                className="d-flex align-items-center wow fadeIn"
-                data-wow-delay="0.4s"
-              >
+              </Col>
+              <Col lg={4}>
                 <div
-                  className="bg-primary d-flex align-items-center justify-content-center rounded"
-                  style={{ width: "60px", height: "60px" }}
+                  className="d-flex align-items-center wow fadeIn"
+                  data-wow-delay="0.4s"
                 >
-                  <i className="fa fa-envelope-open text-white"></i>
+                  <div
+                    className="bg-primary d-flex align-items-center justify-content-center rounded"
+                    style={{ width: "60px", height: "60px" }}
+                  >
+                    <i className="fa fa-envelope-open text-white"></i>
+                  </div>
+                  <div className="ps-4">
+                    <h5 className="mb-2">Hubungi email kami</h5>
+                    <h4 className="text-primary mb-0">lurahamban@gmail.com</h4>
+                  </div>
                 </div>
-                <div className="ps-4">
-                  <h5 className="mb-2">Hubungi email kami</h5>
-                  <h4 className="text-primary mb-0">lurahamban@gmail.com</h4>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-4">
-              <div
-                className="d-flex align-items-center wow fadeIn"
-                data-wow-delay="0.8s"
-              >
+              </Col>
+              <Col lg={4}>
                 <div
-                  className="bg-primary d-flex align-items-center justify-content-center rounded"
-                  style={{ width: "60px", height: "60px" }}
+                  className="d-flex align-items-center wow fadeIn"
+                  data-wow-delay="0.8s"
                 >
-                  <i className="fa fa-map-marker-alt text-white"></i>
-                </div>
-                <div className="ps-4">
-                  <h5 className="mb-2">Lokasi Kantor Lurah</h5>
-                  <h4 className="text-primary mb-0">Kantor Lurah Amban</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="row g-5">
-            <div className="col-lg-6 wow slideInUp" data-wow-delay="0.3s">
-              <form>
-                <div className="row g-3">
-                  <div className="col-md-6">
-                    <input
-                      type="text"
-                      className="form-control border-0 bg-light px-4"
-                      placeholder="Nama Anda"
-                      style={{ height: "55px" }}
-                    />
+                  <div
+                    className="bg-primary d-flex align-items-center justify-content-center rounded"
+                    style={{ width: "60px", height: "60px" }}
+                  >
+                    <i className="fa fa-map-marker-alt text-white"></i>
                   </div>
-                  <div className="col-md-6">
-                    <input
-                      type="email"
-                      className="form-control border-0 bg-light px-4"
-                      placeholder="Email Anda"
-                      style={{ height: "55px" }}
-                    />
-                  </div>
-                  <div className="col-12">
-                    <input
-                      type="text"
-                      className="form-control border-0 bg-light px-4"
-                      placeholder="Subject"
-                      style={{ height: "55px" }}
-                    />
-                  </div>
-                  <div className="col-12">
-                    <textarea
-                      className="form-control border-0 bg-light px-4 py-3"
-                      rows="4"
-                      placeholder="Pesan"
-                    ></textarea>
-                  </div>
-                  <div className="col-12">
-                    <button
-                      className="btn btn-primary w-100 py-3"
-                      type="submit"
-                    >
-                      Kirim Pesan
-                    </button>
+                  <div className="ps-4">
+                    <h5 className="mb-2">Lokasi Kantor Lurah</h5>
+                    <h4 className="text-primary mb-0">Kantor Lurah Amban</h4>
                   </div>
                 </div>
-              </form>
-            </div>
-            <div className="col-lg-6 wow slideInUp" data-wow-delay="0.6s">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3708.883570495203!2d134.062120374614!3d-0.8421289991496924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d540b025081f9eb%3A0x1cc8b5d44a4f1b0c!2sKantor%20Lurah%20Amban!5e1!3m2!1sid!2sid!4v1691212046653!5m2!1sid!2sid"
-                width="600"
-                height="450"
-                style={{ border: "0" }}
-                allowfullscreen=""
-                loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
-          </div>
+              </Col>
+            </Row>
+            <Row className="g-5">
+              <Col lg={6} className="wow slideInUp" data-wow-delay="0.3s">
+                <Form>
+                  <Row className="g-3">
+                    <Col md={6}>
+                      <Form.Control
+                        type="text"
+                        placeholder="Nama Anda"
+                        style={{ height: "55px" }}
+                      />
+                    </Col>
+                    <Col md={6}>
+                      <Form.Control
+                        type="email"
+                        placeholder="Email Anda"
+                        style={{ height: "55px" }}
+                      />
+                    </Col>
+                    <Col xs={12}>
+                      <Form.Control
+                        type="text"
+                        placeholder="Subject"
+                        style={{ height: "55px" }}
+                      />
+                    </Col>
+                    <Col xs={12}>
+                      <Form.Control
+                        as="textarea"
+                        rows={4}
+                        placeholder="Pesan"
+                      />
+                    </Col>
+                    <Col xs={12}>
+                      <Button
+                        variant="primary"
+                        type="submit"
+                        className="w-100 py-3"
+                      >
+                        Kirim Pesan
+                      </Button>
+                    </Col>
+                  </Row>
+                </Form>
+              </Col>
+              <Col lg={6} className="wow slideInUp" data-wow-delay="0.6s">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3708.883570495203!2d134.062120374614!3d-0.8421289991496924!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2d540b025081f9eb%3A0x1cc8b5d44a4f1b0c!2sKantor%20Lurah%20Amban!5e1!3m2!1sid!2sid!4v1691212046653!5m2!1sid!2sid"
+                  width="600"
+                  height="450"
+                  style={{
+                    border: "0",
+                    borderRadius: "20px",
+                    marginBottom: "50px",
+                  }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                ></iframe>
+              </Col>
+            </Row>
+          </Card>
         </div>
       </div>
-      {/* Footer Start */}
       {/* <!-- Footer Start --> */}
       <div
         className="container-fluid bg-dark text-light mt-5 wow fadeInUp"

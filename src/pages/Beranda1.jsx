@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Card } from "react-bootstrap";
+import "../css2/style2.css";
 
 function Beranda1() {
   const [ucapan, setUcapan] = useState([]);
@@ -272,73 +274,57 @@ function Beranda1() {
           </nav>
         </div>
         {/* Content Beranda Start*/}
-        <div
-          style={{
-            margin: "10px",
-            background: "#FFFFFF",
-          }}
-        >
-          <div style={{ margin: "20px" }}>
-            {ucapan.map((item, index) => (
-              <div
-                key={index}
-                style={{ display: "flex", alignItems: "center" }}
-              >
-                <div style={{ flex: 1 }}>
-                  {item.pesan &&
-                    item.pesan
-                      .split("\n")
-                      .map((line, lineIndex) =>
-                        line.startsWith("•") ? (
-                          <li key={lineIndex}>{line.substring(1)}</li>
-                        ) : (
-                          <div
-                            key={lineIndex}
-                            dangerouslySetInnerHTML={{ __html: line }}
-                          />
-                        )
-                      )}
-                </div>
-                <div style={{ flexShrink: 0 }}>
-                  {item.image && (
-                    <img
-                      src={`http://localhost:3040/images/${item.image}`}
-                      alt=""
-                      style={{
-                        width: "420px",
-                        height: "440px",
-                        borderRadius: "500px",
-                      }}
-                    />
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div>
+        <div className="container mt-4">
           {ucapan.map((item, index) => (
-            <Link to={`/editucapan/` + item.id}>
-              <span
-                className="btn btn-sm"
-                style={{
-                  backgroundColor: "#3B44F6",
-                  fontSize: "16px",
-                  color: "#ffffff",
-                  border: "4px solid",
-                  padding: "5px 25px",
-                  borderRadius: "25px",
-                  marginTop: "0px",
-                  marginLeft: "20px",
-                }}
-              >
-                Edit Pesan
-              </span>
-            </Link>
+            <Card key={index} className="mb-4">
+              <Card.Body>
+                <Card.Title>Ucapan Lurah</Card.Title>
+                <div className="d-flex">
+                  <div className="flex-grow-1">
+                    {item.pesan &&
+                      item.pesan
+                        .split("\n")
+                        .map((line, lineIndex) =>
+                          line.startsWith("•") ? (
+                            <li key={lineIndex}>{line.substring(1)}</li>
+                          ) : (
+                            <div
+                              key={lineIndex}
+                              dangerouslySetInnerHTML={{ __html: line }}
+                            />
+                          )
+                        )}
+                  </div>
+                  <div className="flex-shrink-0">
+                    {item.image && (
+                      <img
+                        src={`http://localhost:3040/images/${item.image}`}
+                        alt=""
+                        className="bg-informasi"
+                        // style={{
+                        //   width: "400px",
+                        //   height: "400px",
+                        //   borderRadius: "50%",
+                        //   // maxWidth: "150px",
+                        // }}
+                      />
+                    )}
+                  </div>
+                </div>
+                <br />
+                <br />
+                <div className="text-left">
+                  <Link
+                    to={`/editucapan/${item.id}`}
+                    className="btn btn-primary btn-sm m-2"
+                  >
+                    Edit Pesan
+                  </Link>
+                </div>
+              </Card.Body>
+            </Card>
           ))}
         </div>
-        <br />
-        <br />
         {/* Content Beranda End */}
         {/* ... Bagian footer ... */}
         <footer className="footer">

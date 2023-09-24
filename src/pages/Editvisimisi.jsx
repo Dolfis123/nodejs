@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Card, Row, Col, Form, Button } from "react-bootstrap";
 
 import axios from "axios";
 import ReactQuill from "react-quill";
@@ -94,8 +95,26 @@ function Editvisimisi() {
         .catch((err) => console.log(err));
     }
   };
+
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["bold", "italic", "underline", "strike"], // Tambahkan opsi bold, italic, underline, strike
+      [{ color: [] }, { background: [] }], // Tambahkan opsi warna teks dan latar belakang
+      [{ align: [] }],
+      ["link", "image", "video"], // Tambahkan opsi link, image, dan video
+      ["clean"],
+      ["blockquote"], // Tambahkan opsi blockquote
+      [{ script: "sub" }, { script: "super" }], // Tambahkan opsi subscript dan superscript
+      [{ indent: "-1" }, { indent: "+1" }], // Tambahkan opsi indentasi
+      [{ size: ["small", false, "large", "huge"] }], // Tambahkan opsi ukuran font
+      ["code-block"], // Tambahkan opsi code block
+    ],
+  };
+
   return (
-    <div className="wrapper">
+    <div calssName="wrapper bg-body-secondary">
       <div className="body-overlay"></div>
 
       {/* Sidebar */}
@@ -334,62 +353,69 @@ function Editvisimisi() {
           </nav>
         </div>
 
-        <div className="bg-white">
-          <div
-            className="d-flex flex-column pt-4 text-black"
-            style={{ marginLeft: "30px" }}
-          >
-            <h3>Edit Visi & Misi</h3>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <label
-                  htmlFor="visi"
-                  className="d-flex flex-column align-items-left pt-4 text-black"
-                >
-                  <b>VISI</b>
-                </label>
-                <ReactQuill
-                  ref={quillRefVisi}
-                  value={visi}
-                  onChange={(content) => setVisi(content)}
-                  style={{ width: "65%", height: "280px" }}
-                />
-              </div>
-              <div>
+        {/* Content Start */}
+        <Card className="bg-white">
+          <Card.Body>
+            <div
+              className="d-flex flex-column pt-4 text-black"
+              style={{ marginLeft: "30px" }}
+            >
+              <h3>Edit Visi & Misi</h3>
+              <form onSubmit={handleSubmit}>
+                <div>
+                  <Form.Label
+                    htmlFor="visi"
+                    className="d-flex flex-column align-items-left pt-4 text-black"
+                  >
+                    <b>VISI</b>
+                  </Form.Label>
+
+                  <ReactQuill
+                    ref={quillRefVisi}
+                    value={visi}
+                    onChange={(content) => setVisi(content)}
+                    modules={modules} // Tambahkan modules toolbar di sini
+                    style={{ width: "65%", height: "280px" }}
+                  />
+                </div>
+                <div>
+                  <br />
+                  <br />
+                  <Form.Label
+                    htmlFor="misi"
+                    className="d-flex flex-column align-items-left pt-4 text-black"
+                  >
+                    <b>MISI</b>
+                  </Form.Label>
+                  <ReactQuill
+                    ref={quillRefMisi}
+                    value={misi}
+                    onChange={(content) => setMisi(content)}
+                    modules={modules}
+                    style={{ width: "65%", height: "280px" }}
+                  />
+                </div>
                 <br />
                 <br />
-                <label
-                  htmlFor="misi"
-                  className="d-flex flex-column align-items-left pt-4 text-black"
-                >
-                  <b>MISI</b>
-                </label>
-                <ReactQuill
-                  ref={quillRefMisi}
-                  value={misi}
-                  onChange={(content) => setMisi(content)}
-                  style={{ width: "65%", height: "280px" }}
-                />
-              </div>
+                <br />
+                <div className="col-lg-3 d-flex justify-content-between">
+                  <Button type="submit" className="btn btn-primary order-1">
+                    Ubah
+                  </Button>
+                  <Button
+                    type="button"
+                    className="btn btn-success rounded btn-center order-2"
+                    onClick={() => navigate("/profil")}
+                  >
+                    Kembali
+                  </Button>
+                </div>
+              </form>
               <br />
-              <br />
-              <br />
-              <div className="col-lg-3 d-flex justify-content-between">
-                <button type="submit" className="btn btn-primary order-1">
-                  Ubah
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-success rounded btn-center order-2"
-                  onClick={() => navigate("/profil")}
-                >
-                  Kembali
-                </button>
-              </div>
-            </form>
-            <br />
-          </div>
-        </div>
+            </div>
+          </Card.Body>
+        </Card>
+        {/* Content End */}
         <footer className="footer">
           <div className="container-fluid">
             <div className="row">

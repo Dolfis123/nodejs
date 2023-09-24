@@ -25,7 +25,7 @@ function BeritaDetail() {
   }
 
   return (
-    <div>
+    <div style={{ backgroundColor: "#F0F0F0" }}>
       {/* <!-- Topbar Start --> */}
       <div
         className="container-fluid px-5 d-none d-lg-block"
@@ -151,14 +151,24 @@ function BeritaDetail() {
         >
           <div className="row py-5">
             <div className="col-12 pt-lg-5 mt-lg-5 text-center">
-              <h1 className="display-4 text-white animated zoomIn">
-                Kontak Kami
-              </h1>
+              <h2
+                className="text-center mt-4 animated zoomIn"
+                style={{
+                  fontSize: "3rem",
+                  color: "#F6F6F6",
+                  fontFamily: "Poppins, sans-serif",
+                }}
+              >
+                Berita & Pengumuman
+              </h2>
               <h3
-                className="text-center mt-4 animated zoomIn" // Menambahkan class Bootstrap untuk membuat teks menjadi tengah
+                className="text-center mt-4  animated zoomIn" // Menambahkan class Bootstrap untuk membuat teks menjadi tengah
                 style={{ fontSize: "1.2rem", color: "#8BE8E5" }} // Mengatur ukuran font agar responsif
               >
-                Disini kamu akan melihat Lokasi dan kontak kelurahan Amban
+                Disini kamu akan melihat berita-berita tentang Lurah amban dan
+                <br />
+                sekitarnya, dan juga kamu bisa melihat pengumuman-pengumuman
+                dari kelurahan amban
               </h3>
             </div>
           </div>
@@ -166,40 +176,63 @@ function BeritaDetail() {
       </div>
       {/* Navbar End */}
       {/* <!-- Content Start --> */}
-      <div style={{ margin: "20px" }}>
-        {loading ? (
-          <p>Loading...</p>
-        ) : (
-          <div className="card">
-            <div className="card-body">
-              <h3 className="card-title">{berita.news_title}</h3>
-              <div className="card-footer">
-                <small className="text-muted">
-                  <i className="far fa-calendar-alt text-primary me-2"></i>
-                  Kelurahan Amban: {formatDate(berita.publication_date)}
-                </small>
-              </div>
-              <div>
-                {" "}
-                {berita.news_image && (
-                  <img
-                    src={`http://localhost:3040/images/${berita.news_image}`}
-                    alt={berita.news_title}
-                    className="img-fluid"
-                    style={{ width: "1000px", height: "500px" }}
-                  />
-                )}
-              </div>
-              <br />
+      <div className="container-fluid position-relative p-0">
+        <div
+          style={{
+            margin: "50px",
+
+            marginBottom: "100px",
+          }}
+        >
+          {loading ? (
+            <p style={{ textAlign: "center" }}>Loading...</p>
+          ) : (
+            <div className="card">
               <div
-                className="card-text"
-                dangerouslySetInnerHTML={{ __html: berita.news_content }}
-              />
-              <p className="card-text">Sumber Berita: {berita.news_source}</p>
-              <p className="card-text">Kategori Berita: {berita.category}</p>
+                className="card-body"
+                style={{ marginLeft: "100px", marginRight: "50px" }}
+              >
+                <h3
+                  className="card-title card-text"
+                  style={{ marginTop: "50px" }}
+                >
+                  {berita.news_title}
+                </h3>
+                <div className="card-footer">
+                  <small className="text-muted card-text">
+                    <i className="far fa-calendar-alt text-primary me-2"></i>
+                    Kelurahan Amban: {formatDate(berita.publication_date)}
+                  </small>
+                </div>
+                <div>
+                  {" "}
+                  {berita.news_image && (
+                    <img
+                      src={`http://localhost:3040/images/${berita.news_image}`}
+                      alt={berita.news_title}
+                      className="img-fluid bg-informasi"
+                    />
+                  )}
+                </div>
+                <br />
+                <div
+                  className="card-text"
+                  dangerouslySetInnerHTML={{ __html: berita.news_content }}
+                  style={{
+                    marginTop: "30px",
+                    marginBottom: "100px",
+                    fontSize: "16px", // Ukuran font default
+                  }}
+                />
+
+                <p className="card-text">Sumber Berita: {berita.news_source}</p>
+                <p className="card-text" style={{ marginBottom: "30px" }}>
+                  Kategori Berita: {berita.category}
+                </p>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
       {/* <!-- Content End --> */}
       {/* Footer Start */}

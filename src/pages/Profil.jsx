@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Card, Button } from "react-bootstrap";
 import axios from "axios";
 
 function Profil() {
@@ -285,148 +286,150 @@ function Profil() {
           </nav>
         </div>
 
-        <h2
-          className="text-center mt-4 " // Menambahkan class Bootstrap untuk membuat teks menjadi tengah
-          style={{ fontSize: "2rem", color: "#140303" }} // Mengatur ukuran font agar responsif
-        >
-          Sejarah Kelurahan Amban
-        </h2>
-        <div style={{ margin: "20px" }}>
-          <div className="mt-3">
-            <div className="card card-stats">
-              <tr style={{ marginLeft: "30px", marginTop: "30px" }}>
-                <th className="text-center pb-1">
-                  <h4>
-                    {" "}
-                    <b>SEJARAH</b>
-                  </h4>
-                </th>
-              </tr>
-              <br />
-              <div style={{ margin: "30px" }}>
-                {sejarah.map((item, index) => (
-                  <tr key={index}>
-                    <td>
-                      {item.isi
-                        .split("\n")
-                        .map((line, lineIndex) =>
-                          line.startsWith("•") ? (
-                            <li key={lineIndex}>{line.substring(1)}</li>
-                          ) : (
-                            <div
-                              key={lineIndex}
-                              dangerouslySetInnerHTML={{ __html: line }}
-                            />
-                          )
-                        )}
-                    </td>
-                  </tr>
-                ))}
-              </div>
-              <br />
-            </div>
-            {sejarah.map((item, index) => (
-              <Link to={`/sejarah/` + item.id}>
-                <span
-                  className="btn btn-sm"
-                  style={{
-                    backgroundColor: "#3B44F6",
-                    fontSize: "16px",
-                    color: "#ffffff",
-                    border: "4px solid",
-                    padding: "5px 25px",
-                    borderRadius: "25px",
-                    marginTop: "0px",
-                  }}
+        <div>
+          <div style={{ margin: "20px" }}>
+            <Card>
+              <Card.Body>
+                <h2
+                  className="text-center mt-4"
+                  style={{ fontSize: "2rem", color: "#140303" }}
                 >
-                  Edit Sejarah
-                </span>
-              </Link>
-            ))}
-          </div>
-          <h2
-            className="text-center mt-4" // Menambahkan class Bootstrap untuk membuat teks menjadi tengah
-            style={{ fontSize: "2rem", color: "#140303" }} // Mengatur ukuran font agar responsif
-          >
-            Visi & Misi Kelurahan Amban
-          </h2>
-          <div>
-            <div className="mt-3">
-              <div className="card card-stats">
-                <tr style={{ marginLeft: "30px", marginTop: "30px" }}>
-                  <th className="text-center pb-1">
-                    <h4>
-                      <b>VISI</b>
-                    </h4>
-                  </th>
-                </tr>
-                <div style={{ marginLeft: "30px", marginRight: "20px" }}>
-                  {visiMisi.map((item, index) => (
-                    <tr key={index}>
-                      <td>
-                        {item.visi
-                          .split("\n")
-                          .map((line, lineIndex) =>
-                            line.startsWith("•") ? (
-                              <li key={lineIndex}>{line.substring(1)}</li>
-                            ) : (
-                              <div
-                                key={lineIndex}
-                                dangerouslySetInnerHTML={{ __html: line }}
-                              />
-                            )
-                          )}
-                      </td>
-                    </tr>
-                  ))}
-                </div>
-              </div>
-              <div className="card card-stats">
-                <tr style={{ marginLeft: "30px", marginTop: "30px" }}>
-                  <th className="text-center pb-1">
-                    <h4>
-                      {" "}
-                      <b>MISI</b>
-                    </h4>
-                  </th>
-                </tr>
-                <br />
-                <div style={{ marginRight: "20px" }}>
-                  {visiMisi.map((item, index) => (
-                    <tr key={index}>
-                      <td>
-                        <ul>
-                          {item.misi.split("\n").map((line, lineIndex) => (
-                            <li
-                              key={lineIndex}
-                              dangerouslySetInnerHTML={{ __html: line }}
-                            />
+                  Sejarah Kelurahan Amban
+                </h2>
+                <div style={{ margin: "20px" }}>
+                  <div className="mt-3">
+                    <Card className="card-stats">
+                      <Card.Body>
+                        <h4 className="text-center pb-1">
+                          <b>SEJARAH</b>
+                        </h4>
+                        <div style={{ margin: "30px" }}>
+                          {sejarah.map((item, index) => (
+                            <div key={index}>
+                              {item.isi
+                                .split("\n")
+                                .map((line, lineIndex) =>
+                                  line.startsWith("•") ? (
+                                    <li key={lineIndex}>{line.substring(1)}</li>
+                                  ) : (
+                                    <div
+                                      key={lineIndex}
+                                      dangerouslySetInnerHTML={{ __html: line }}
+                                    />
+                                  )
+                                )}
+                            </div>
                           ))}
-                        </ul>
-                      </td>
-                    </tr>
+                        </div>
+                      </Card.Body>
+                    </Card>
+                    {sejarah.map((item, index) => (
+                      <Link to={`/sejarah/${item.id}`}>
+                        <Button
+                          variant="primary"
+                          style={{
+                            fontSize: "16px",
+                            color: "#ffffff",
+                            border: "4px solid",
+                            padding: "5px 25px",
+                            borderRadius: "25px",
+                            marginTop: "0px",
+                          }}
+                        >
+                          Edit Sejarah
+                        </Button>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </Card.Body>
+            </Card>
+          </div>
+
+          <div
+            style={{
+              marginLeft: "20px",
+              marginRight: "20px",
+              marginBottom: "20px",
+              marginTop: "70px",
+            }}
+          >
+            {" "}
+            <Card>
+              <Card.Body>
+                <h2
+                  className="text-center mt-4"
+                  style={{ fontSize: "2rem", color: "#140303" }}
+                >
+                  Visi & Misi Kelurahan Amban
+                </h2>
+                <div className="mt-3">
+                  <Card className="card-stats">
+                    <Card.Body>
+                      <h4 className="text-center pb-1">
+                        <b>VISI</b>
+                      </h4>
+                      <div style={{ marginLeft: "30px", marginRight: "20px" }}>
+                        {visiMisi.map((item, index) => (
+                          <div key={index}>
+                            {item.visi
+                              .split("\n")
+                              .map((line, lineIndex) =>
+                                line.startsWith("•") ? (
+                                  <li key={lineIndex}>{line.substring(1)}</li>
+                                ) : (
+                                  <div
+                                    key={lineIndex}
+                                    dangerouslySetInnerHTML={{ __html: line }}
+                                  />
+                                )
+                              )}
+                          </div>
+                        ))}
+                      </div>
+                    </Card.Body>
+                  </Card>
+                  <Card className="card-stats">
+                    <Card.Body>
+                      <h4 className="text-center pb-1">
+                        <b>MISI</b>
+                      </h4>
+                      <div style={{ marginRight: "20px" }}>
+                        {visiMisi.map((item, index) => (
+                          <div key={index}>
+                            <ul>
+                              {item.misi.split("\n").map((line, lineIndex) => (
+                                <li
+                                  key={lineIndex}
+                                  dangerouslySetInnerHTML={{ __html: line }}
+                                />
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
+                      </div>
+                    </Card.Body>
+                  </Card>
+                  {visiMisi.map((item, index) => (
+                    <Link to={`/visi-misi/${item.id}`}>
+                      <Button
+                        variant="primary"
+                        style={{
+                          fontSize: "16px",
+                          color: "#ffffff",
+                          border: "4px solid",
+                          padding: "3px 25px",
+                          borderRadius: "25px",
+                          marginTop: "0px",
+                        }}
+                      >
+                        Edit Visi & Misi
+                      </Button>
+                    </Link>
                   ))}
                 </div>
-              </div>
-              {visiMisi.map((item, index) => (
-                <Link to={`/visi-misi/` + item.id}>
-                  <span
-                    className="btn btn-sm"
-                    style={{
-                      backgroundColor: "#3B44F6",
-                      fontSize: "16px",
-                      color: "#ffffff",
-                      border: "4px solid",
-                      padding: "3px 25px",
-                      borderRadius: "25px",
-                      marginTop: "0px",
-                    }}
-                  >
-                    Edit Visi & Misi
-                  </span>
-                </Link>
-              ))}
-            </div>
+              </Card.Body>
+            </Card>
           </div>
         </div>
         {/* ... Bagian footer ... */}

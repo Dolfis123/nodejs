@@ -46,25 +46,43 @@ function TambahUcapan() {
         .catch((err) => console.log(err));
     }
   };
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["bold", "italic", "underline", "strike"],
+      [{ color: [] }, { background: [] }],
+      [{ align: [] }],
+      ["link", "image", "video"],
+      ["clean"],
+      ["blockquote"],
+      [{ script: "sub" }, { script: "super" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      [{ size: ["small", false, "large", "huge"] }],
+      ["code-block"],
+    ],
+  };
 
   return (
     <div>
-      <div className="d-flex flex-column align-items-center pt-4 text-white">
+      <div className="d-flex flex-column align-items-center pt-4 text-black">
         <h2>
-          <span className="text-white">Tambah Penduduk</span>
+          <span className="text-black">Tambah Penduduk</span>
         </h2>
         <form className="row g-3 w-50" onSubmit={handleSubmit}>
           <div className="col-12">
-            <label htmlFor="inputPesan" className="form-label text-black">
+            <label htmlFor="inputPesan" className="form-label ">
               Pesan
             </label>
             <ReactQuill
               id="inputPesan"
               value={data.pesan}
               onChange={handleChangePesan}
+              modules={modules}
               theme="snow"
-              style={{ color: "black", width: "65%", height: "280px" }}
+              style={{ width: "100%", height: "280px" }}
             />
+
             <br />
             <br />
           </div>

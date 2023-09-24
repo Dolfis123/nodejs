@@ -61,6 +61,24 @@ function EditUcapan() {
     }
   };
 
+  const modules = {
+    toolbar: [
+      [{ header: "1" }, { header: "2" }, { font: [] }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["bold", "italic", "underline", "strike"], // Tambahkan opsi bold, italic, underline, strike
+      [{ color: [] }, { background: [] }], // Tambahkan opsi warna teks dan latar belakang
+      [{ align: [] }],
+      ["link", "image", "video"], // Tambahkan opsi link, image, dan video
+      ["clean"],
+      ["blockquote"], // Tambahkan opsi blockquote
+      [{ script: "sub" }, { script: "super" }], // Tambahkan opsi subscript dan superscript
+      [{ indent: "-1" }, { indent: "+1" }], // Tambahkan opsi indentasi
+      [{ size: ["small", false, "large", "huge"] }], // Tambahkan opsi ukuran font
+      ["code-block"], // Tambahkan opsi code block
+      [{ list: "check" }],
+    ],
+  };
+
   return (
     <div className="wrapper">
       <div className="body-overlay"></div>
@@ -301,44 +319,50 @@ function EditUcapan() {
           </nav>
         </div>
 
-        <div className="bg-white">
-          <div
-            className="d-flex flex-column pt-4 text-black"
-            style={{ marginLeft: "30px" }}
-          >
-            <h3>Edit Ucapan Lurah</h3>
-            <form onSubmit={handleSubmit}>
-              <div>
-                <ReactQuill
-                  ref={quillRefUcapan}
-                  value={ucapan}
-                  onChange={(content) => setUcapan(content)}
-                  style={{ width: "65%", height: "280px" }}
-                />
+        <div style={{ margin: "50px" }}>
+          <div className="container">
+            <div className="card mt-4">
+              <div className="card-body">
+                <h3 className="card-title">Edit Ucapan Lurah</h3>
+                <form onSubmit={handleSubmit} style={{ margin: "20px" }}>
+                  <div>
+                    <ReactQuill
+                      ref={quillRefUcapan}
+                      value={ucapan}
+                      onChange={(content) => setUcapan(content)}
+                      modules={modules}
+                      style={{ height: "500px" }}
+                    />
+                  </div>
+                  {/* <div className="mt-4">
+                  <input
+                    type="file"
+                    onChange={(e) => setSelectedImage(e.target.files[0])}
+                  />
+                </div> */}
+                  <br />
+                  <br />
+                  <div className="mt-4 d-flex justify-content-between">
+                    <button
+                      type="submit"
+                      className="btn btn-primary"
+                      style={{ marginLeft: "10px" }}
+                    >
+                      Ubah
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-success"
+                      onClick={() => navigate("/beranda1")}
+                      style={{ marginRight: "800px" }}
+                    >
+                      Kembali
+                    </button>
+                  </div>
+                </form>
               </div>
-              <br />
-              <br />
-              <br />
-              <div className="col-lg-3 d-flex justify-content-between">
-                <button type="submit" className="btn btn-primary order-1">
-                  Ubah
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-success rounded btn-center order-2"
-                  onClick={() => navigate("/beranda1")}
-                >
-                  Kembali
-                </button>
-              </div>
-            </form>
+            </div>
           </div>
-          <br />
-          <br />
-          <br />
-          <br />
-
-          <br />
         </div>
         <footer className="footer">
           <div className="container-fluid">

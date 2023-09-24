@@ -15,7 +15,7 @@ function Informasi() {
             ...item,
             publication_date: new Date(item.publication_date),
           }))
-          .sort((a, b) => b.publication_date - a.publication_date);
+          .sort((a, b) => a.publication_date - b.publication_date);
 
         setBerita(sortedBerita);
       })
@@ -36,7 +36,7 @@ function Informasi() {
 
   // ...
   return (
-    <div>
+    <div style={{ backgroundColor: "#F0F0F0" }}>
       {/* <!-- Topbar Start --> */}
       <div
         className="container-fluid px-5 d-none d-lg-block"
@@ -186,54 +186,78 @@ function Informasi() {
         </div>
       </div>
       {/* Navbar End */}
-      <div style={{ margin: "60px" }}>
-        <h2
-          className="text-center mt-4 section-title position-relative pb-3 mb-5"
-          style={{ fontSize: "2rem", color: "#207DFF" }}
+      <dir className="container-fluid position-relative p-0">
+        <div
+          style={{
+            marginLeft: "40px",
+            marginRight: "40px",
+            marginBottom: "100px",
+          }}
         >
-          Informasi
-        </h2>
-        <br />
-        <br />
+          <h2
+            className="text-center mt-4 section-title position-relative pb-3 mb-5"
+            style={{
+              fontSize: "2rem",
+              color: "#207DFF",
+              backgroundColor: "#F0F0F0",
+            }}
+          >
+            Informasi
+          </h2>
+          <br />
+          <br />
 
-        <div className="row">
-          {berita
-            .slice() // Buat salinan array untuk menghindari perubahan mutasi
-            .reverse() // Balik urutan item
-            .map((item, index) => (
-              <div key={index} className="col-lg-4 col-md-6 col-sm-12 mb-4">
-                <div className="card">
-                  {item.news_image && (
-                    <img
-                      src={`http://localhost:3040/images/${item.news_image}`}
-                      alt={item.news_title}
-                      className="card-img-top"
-                      style={{ maxWidth: "100%" }}
-                    />
-                  )}
-                  <div className="card-footer">
-                    <small className="text-muted">
-                      <i className="far fa-calendar-alt text-primary me-2"></i>
-                      Kelurahan Amban: {formatDate(item.publication_date)}
-                    </small>
-                  </div>
-                  <div className="card-body">
-                    <h5 className="card-title">{item.news_title}</h5>
-                    <p className="card-text">
-                      {removeHtmlTags(item.news_content).substring(0, 100)}...
-                    </p>
-                    <Link
-                      to={`/berita/${item.news_id}`}
-                      className="btn btn-primary"
+          <div className="row" style={{ backgroundColor: "#ffff" }}>
+            {berita
+              .slice() // Buat salinan array untuk menghindari perubahan mutasi
+              .reverse() // Balik urutan item
+              .map((item, index) => (
+                <div key={index} className="col-lg-4 col-md-6 col-sm-12 mb-4">
+                  <div
+                    className="card"
+                    style={{
+                      backgroundColor: "#E4EFE7",
+                      marginTop: "30px",
+                      marginBottom: "30px",
+                    }}
+                  >
+                    {item.news_image && (
+                      <img
+                        src={`http://localhost:3040/images/${item.news_image}`}
+                        alt={item.news_title}
+                        className="card-img-top bg-informasi"
+                        // style={{ maxWidth: "100%" }}
+                      />
+                    )}
+                    <div
+                      className="card-footer"
+                      style={{ backgroundColor: "#EAF6F6" }}
                     >
-                      Lihat Selengkapnya
-                    </Link>
+                      <small className="text-muted">
+                        <i className="far fa-calendar-alt text-primary me-2 card-text"></i>
+                        Kelurahan Amban: {formatDate(item.publication_date)}
+                      </small>
+                    </div>
+                    <div className="card-body">
+                      <h5 className="card-title card-text">
+                        {item.news_title}
+                      </h5>
+                      <p className="card-text">
+                        {removeHtmlTags(item.news_content).substring(0, 100)}...
+                      </p>
+                      <Link
+                        to={`/berita/${item.news_id}`}
+                        className="btn btn-primary"
+                      >
+                        Lihat Selengkapnya
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+          </div>
         </div>
-      </div>
+      </dir>
       {/* Footer Start */}
       {/* <!-- Footer Start --> */}
       <div

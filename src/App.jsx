@@ -24,6 +24,7 @@ import EditUcapan from "./pages/EditUcapan";
 import StrukturOrganisasi from "./pages2/StrukturOrganisasi";
 import BeritaDetail from "./pages2/BeritaDetail";
 import Informasi from "./pages2/Informasi";
+import EditBerita from "./pages/EditBerita";
 
 // Test
 import DataTest from "./pages/DataTest";
@@ -86,6 +87,7 @@ function App() {
           <Route path="/editpegawai/:id" element={<EditPegawai />}></Route>
           <Route path="/formsurat" element={<FormSuratTidakMampu />}></Route>
           <Route path="/editucapan/:id" element={<EditUcapan />}></Route>
+          <Route path="editberita/:id" element={<EditBerita />}></Route>
 
           <Route path="/app1" element={<App1 />} />
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Card, Button } from "react-bootstrap";
 
 function Berita() {
   const [berita, setBerita] = useState([]);
@@ -10,9 +11,9 @@ function Berita() {
       .get("http://localhost:3040/news")
       .then((response) => {
         // Mengurutkan berita berdasarkan tanggal publikasi secara descending (terbaru dulu)
-        const sortedBerita = response.data.sort((a, b) => {
-          const dateA = new Date(a.publication_date);
-          const dateB = new Date(b.publication_date);
+        const sortedBerita = [...response.data].sort((a, b) => {
+          const dateA = new Date(b.publication_date);
+          const dateB = new Date(a.publication_date);
           return dateB - dateA;
         });
 
@@ -301,96 +302,105 @@ function Berita() {
         </div>
         {/* Content Beranda Start*/}
 
-        <dir style={{ margin: "20px" }}>
-          <h2>Berita</h2>
-          <div>
-            <span>
-              <Link
-                to="/tambahberita"
-                className="btn btn-sm"
-                style={{
-                  backgroundColor: "#185ADB",
-                  fontSize: "17px",
-                  color: "#ffffff",
-                  border: "4px solid",
-                  padding: "5px 25px",
-                  borderRadius: "25px",
-                  marginTop: "20px",
-                  marginBottom: "10px",
-                }}
+        <div style={{ margin: "20px" }}>
+          <Card>
+            <Card.Body>
+              <div
+                className="container-fluid position-relative p-0"
+                style={{ margin: "20px" }}
               >
-                Tambah Berita
-              </Link>
-            </span>
-          </div>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>
-                  <b>Gambar</b>
-                </th>
-                <th>
-                  <b>Judul Berita</b>
-                </th>
-                <th>
-                  <b>Tanggal Publikasi</b>
-                </th>
-                <th>
-                  <b>Sumber Berita</b>
-                </th>
-                <th>
-                  <b>Kategori Berita</b>
-                </th>
-                <th>
-                  <b>Aksi</b>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {berita
-                .slice() // Buat salinan array untuk menghindari perubahan mutasi
-                .reverse() // Balik urutan item
-                .map((item, index) => (
-                  <tr key={index}>
-                    <td>
-                      {item.news_image && (
-                        <img
-                          src={`http://localhost:3040/images/${item.news_image}`}
-                          alt={item.news_title}
-                          className="img-thumbnail"
-                          style={{ maxWidth: "100px" }}
-                        />
-                      )}
-                    </td>
-                    <td>{item.news_title}</td>
-                    <td>{formatDate(item.publication_date)}</td>
-                    <td>{item.news_source}</td>
-                    <td>{item.category}</td>
-                    <td>
-                      <Link
-                        to={`/edit-berita/${item.id}`}
-                        className="btn btn-primary"
-                      >
-                        Edit
-                      </Link>
-                      <Link
-                        to={`/berita/${item.news_id}`}
-                        className="btn btn-success"
-                      >
-                        Lihat
-                      </Link>
-                      <button
-                        onClick={() => handleDelete(item.news_id)}
-                        className="btn btn-danger"
-                      >
-                        Hapus
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </dir>
+                <h2>Berita</h2>
+                <div>
+                  <span>
+                    <Link
+                      to="/tambahberita"
+                      className="btn btn-sm"
+                      style={{
+                        backgroundColor: "#185ADB",
+                        fontSize: "17px",
+                        color: "#ffffff",
+                        border: "4px solid",
+                        padding: "5px 25px",
+                        borderRadius: "25px",
+                        marginTop: "20px",
+                        marginBottom: "10px",
+                      }}
+                    >
+                      Tambah Berita
+                    </Link>
+                  </span>
+                </div>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>
+                        <b>Gambar</b>
+                      </th>
+                      <th>
+                        <b>Judul Berita</b>
+                      </th>
+                      <th>
+                        <b>Tanggal Publikasi</b>
+                      </th>
+                      <th>
+                        <b>Sumber Berita</b>
+                      </th>
+                      <th>
+                        <b>Kategori Berita</b>
+                      </th>
+                      <th>
+                        <b>Aksi</b>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {berita
+                      .slice() // Buat salinan array untuk menghindari perubahan mutasi
+                      .reverse() // Balik urutan item
+                      .map((item, index) => (
+                        <tr key={index}>
+                          <td>
+                            {item.news_image && (
+                              <img
+                                src={`http://localhost:3040/images/${item.news_image}`}
+                                alt={item.news_title}
+                                className="img-thumbnail bg-informasi"
+                                style={{ maxWidth: "100px" }}
+                              />
+                            )}
+                          </td>
+                          <td>{item.news_title}</td>
+                          <td>{formatDate(item.publication_date)}</td>
+                          <td>{item.news_source}</td>
+                          <td>{item.category}</td>
+                          <td>
+                            <Link
+                              to={`/editberita/${item.news_id}`}
+                              className="btn btn-primary"
+                            >
+                              Edit
+                            </Link>
+                            <Link
+                              to={`/berita/${item.news_id}`}
+                              className="btn btn-success"
+                            >
+                              Lihat
+                            </Link>
+                            <button
+                              onClick={() => handleDelete(item.news_id)}
+                              className="btn btn-danger"
+                            >
+                              Hapus
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
         <br />
         <br />
         {/* Content Beranda End */}

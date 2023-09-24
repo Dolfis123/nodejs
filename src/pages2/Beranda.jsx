@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Card } from "react-bootstrap";
+
 import axios from "axios";
 import "../css2/VideoComponent.css";
 import "../css/profil2.css";
@@ -257,26 +259,22 @@ function Beranda() {
         </div>
       </div>
       {/* Navbar & Carousel End*/}
-
       {/* <!-- Content Start --> */}
-      <div className="centered-content animated slideInDown ">
+      <div className="left-aligned-content animated slideInDown">
         <div
           style={{
-            padding: "0px",
-            background: "#FFFFFF",
-            borderRadius: "50px",
-            marginLeft: "150px",
-            marginRight: "150px",
-            marginTop: "50px",
-            marginBottom: "50px",
+            padding: "20px", // Ubah padding
+            backgroundColor: "#FFFFFF",
+            borderRadius: "20px", // Ubah borderRadius
+            margin: "50px",
+            marginBottom: "100px",
+            marginTop: "100px",
+            textAlign: "left", // Teks menjadi rata kiri
           }}
         >
-          <div style={{ margin: "20px" }}>
-            {ucapan.map((item, index) => (
-              <div
-                key={index}
-                style={{ display: "flex", alignItems: "center" }}
-              >
+          {ucapan.map((item, index) => (
+            <Card key={index} className="mb-3">
+              <Card.Body className="d-flex align-items-center">
                 <div style={{ flex: 1 }}>
                   {item.pesan &&
                     item.pesan
@@ -298,20 +296,21 @@ function Beranda() {
                       src={`http://localhost:3040/images/${item.image}`}
                       alt=""
                       style={{
-                        width: "280px",
-                        height: "300px",
-                        borderRadius: "400px",
+                        maxWidth: "100%", // Membuat gambar responsif
+                        height: "300px", // Menghindari distorsi gambar
+                        borderRadius: "20px", // Ubah borderRadius
                       }}
                       className="image-fade-in"
                     />
                   )}
                 </div>
-              </div>
-            ))}
-          </div>
+              </Card.Body>
+            </Card>
+          ))}
         </div>
       </div>
       {/* <!-- Content End --> */}
+
       {/* <!-- Footer Start --> */}
       <div
         className="container-fluid bg-dark text-light mt-5 wow fadeInUp"

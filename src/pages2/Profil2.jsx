@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Card } from "react-bootstrap";
 
 function Profil2() {
   const [sejarah, setSejarah] = useState([]);
@@ -46,7 +47,7 @@ function Profil2() {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="">
+    <div style={{ backgroundColor: "#F0F0F0" }}>
       {/* <!-- Topbar Start --> */}
       <div
         className="container-fluid px-5 d-none d-lg-block"
@@ -200,41 +201,37 @@ function Profil2() {
           <div className="row justify-content-center">
             <div className="col-lg-8 col-md-10 col-sm-12">
               <div className="mt-3">
-                <div className="card card-stats">
-                  <table>
-                    <thead>
-                      <tr>
-                        <h2
-                          className="text-center mt-4 section-title position-relative pb-3 mb-5" // Menambahkan class Bootstrap untuk membuat teks menjadi tengah
-                          style={{ fontSize: "2rem", color: "#207DFF" }} // Mengatur ukuran font agar responsif
-                        >
-                          Sejarah Kelurahan Amban
-                        </h2>
-                      </tr>
-                    </thead>
+                <Card className="card-stats">
+                  {" "}
+                  {/* Menggunakan Card */}
+                  <Card.Body>
+                    <h2
+                      className="text-center mt-4 section-title position-relative pb-3 mb-5"
+                      style={{ fontSize: "2rem", color: "#207DFF" }}
+                    >
+                      Sejarah Kelurahan Amban
+                    </h2>
                     <br />
-                    <tbody className="jenis-huruf ukuran-huruf">
+                    <ul className="jenis-huruf ukuran-huruf">
                       {sejarah.map((item, index) => (
-                        <tr key={index}>
-                          <td>
-                            {item.isi
-                              .split("\n")
-                              .map((line, lineIndex) =>
-                                line.startsWith("•") ? (
-                                  <li key={lineIndex}>{line.substring(1)}</li>
-                                ) : (
-                                  <div
-                                    key={lineIndex}
-                                    dangerouslySetInnerHTML={{ __html: line }}
-                                  />
-                                )
-                              )}
-                          </td>
-                        </tr>
+                        <li key={index}>
+                          {item.isi
+                            .split("\n")
+                            .map((line, lineIndex) =>
+                              line.startsWith("•") ? (
+                                <span key={lineIndex}>{line.substring(1)}</span>
+                              ) : (
+                                <div
+                                  key={lineIndex}
+                                  dangerouslySetInnerHTML={{ __html: line }}
+                                />
+                              )
+                            )}
+                        </li>
                       ))}
-                    </tbody>
-                  </table>
-                </div>
+                    </ul>
+                  </Card.Body>
+                </Card>
               </div>
             </div>
           </div>
@@ -245,70 +242,77 @@ function Profil2() {
         <div className="container py-5">
           <div className="row g-5">
             <div className="col-lg-7">
-              <h2
-                className="text-center mt-4 section-title position-relative pb-3 mb-5"
-                style={{ fontSize: "2rem", color: "#207DFF" }}
-              >
-                VISI & MISI
-              </h2>
-              <div className="visi-misi-container">
+              <Card className="p-4">
+                {" "}
+                {/* Menggunakan Card untuk visi dan misi */}
                 <h2
-                  className="text-left mt-4"
-                  style={{ fontSize: "1.5rem", color: "#140303" }}
+                  className="text-center mt-4 section-title position-relative pb-3 mb-5"
+                  style={{ fontSize: "2rem", color: "#207DFF" }}
                 >
-                  VISI
+                  VISI & MISI
                 </h2>
-                <ul className="jenis-huruf ">
-                  {visiMisi.map((item, index) => (
-                    <li className="ukuran-huruf" key={index}>
-                      {item.visi
-                        .split("\n")
-                        .map((line, lineIndex) =>
-                          line.startsWith("•") ? (
-                            <li key={lineIndex}>{line.substring(1)}</li>
-                          ) : (
-                            <div
-                              key={lineIndex}
-                              dangerouslySetInnerHTML={{ __html: line }}
-                            />
-                          )
-                        )}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="visi-misi-container">
-                <h2
-                  className="text-left mt-4" // Menambahkan class Bootstrap untuk membuat teks menjadi tengah
-                  style={{ fontSize: "1.5rem", color: "#140303" }} // Mengatur ukuran font agar responsif
-                >
-                  MISI
-                </h2>
-                <ul className="jenis-huruf">
-                  {visiMisi.map((item, index) => (
-                    <li className="ukuran-huruf" key={index}>
-                      {item.misi.split("\n").map((line, lineIndex) => (
-                        <li
-                          key={lineIndex}
-                          dangerouslySetInnerHTML={{ __html: line }}
-                        />
-                      ))}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <div className="visi-misi-container">
+                  <h2
+                    className="text-left mt-4"
+                    style={{ fontSize: "1.5rem", color: "#140303" }}
+                  >
+                    VISI
+                  </h2>
+                  <ul className="jenis-huruf">
+                    {visiMisi.map((item, index) => (
+                      <li className="ukuran-huruf" key={index}>
+                        {item.visi
+                          .split("\n")
+                          .map((line, lineIndex) =>
+                            line.startsWith("•") ? (
+                              <li key={lineIndex}>{line.substring(1)}</li>
+                            ) : (
+                              <div
+                                key={lineIndex}
+                                dangerouslySetInnerHTML={{ __html: line }}
+                              />
+                            )
+                          )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="visi-misi-container">
+                  <h2
+                    className="text-left mt-4"
+                    style={{ fontSize: "1.5rem", color: "#140303" }}
+                  >
+                    MISI
+                  </h2>
+                  <ul className="jenis-huruf">
+                    {visiMisi.map((item, index) => (
+                      <li className="ukuran-huruf" key={index}>
+                        {item.misi.split("\n").map((line, lineIndex) => (
+                          <li
+                            key={lineIndex}
+                            dangerouslySetInnerHTML={{ __html: line }}
+                          />
+                        ))}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Card>
             </div>
             <div className="col-lg-5" style={{ minHeight: "500px" }}>
-              <div className="position-relative h-100">
-                <img
-                  className="position-absolute w-100 h-100 rounded wow zoomIn"
-                  data-wow-delay="0.9s"
-                  src="https://asset-2.tstatic.net/papuabarat/foto/bank/images/Kondisi-Bandar-Udara-Rendani-Manokwari-Papua-Barat.jpg"
-                  alt="Gambar Sejarah"
-                  style={{ objectFit: "cover" }}
-                />
-              </div>
+              <Card className="h-100">
+                {" "}
+                {/* Menggunakan Card untuk gambar */}
+                <div className="position-relative h-100">
+                  <img
+                    className="position-absolute w-100 h-100 rounded wow zoomIn"
+                    data-wow-delay="0.9s"
+                    src="https://images.unsplash.com/photo-1695266543586-b4d77d54c3b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHx8&auto=format&fit=crop&w=500&q=60"
+                    alt="Gambar Sejarah"
+                    style={{ objectFit: "cover" }}
+                  />
+                </div>
+              </Card>
             </div>
           </div>
         </div>
@@ -316,228 +320,253 @@ function Profil2() {
       {/* <!-- About End --> */}
       {/* <!-- About End --> */}
       {/* <!-- Team Start --> */}
-      <div classNames="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
+      <div className="container-fluid py-5 wow fadeInUp" data-wow-delay="0.1s">
         <div className="container py-5">
-          <div
-            className="section-title text-center position-relative pb-3 mb-5 mx-auto"
-            style={{ maxwidth: "600px" }}
-          >
-            <h5 className="fw-bold text-primary text-uppercase">
-              Pegawai Lurah Amban
-            </h5>
-          </div>
-          <div className="container ">
-            <div class="row">
-              <div className="tree">
-                <ul>
-                  <li>
-                    <a href="#">
-                      <img src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg" />
-                      <span>
-                        <b>LURAH AMBAN</b>
-                      </span>
-                      <span>
-                        <b>
-                          <u>ALHEN SORBU, S.STP</u>
-                        </b>
-                      </span>
-                      <span>
-                        <b>NIP: 199304032017081002</b>
-                      </span>
-                    </a>
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <img src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg" />
-                          <span>
-                            <b>SEKRETARIS</b>
-                          </span>
-                          <span>
-                            <b>
-                              <u>RONNY TELENGGEN, S.STP</u>
-                            </b>
-                          </span>
-                          <span>
-                            <b>NIP: 199405122016091004</b>
-                          </span>
-                        </a>
-                        <a href="#">
-                          <img src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg" />
-                          <span>
-                            <b>BENDAHARA LURAH</b>
-                          </span>
-                          <span>
-                            <b>
-                              <u>YUNUS RUMEREK</u>
-                            </b>
-                          </span>
-                          <span>
-                            <b>NIP: 198006052015091001</b>
-                          </span>
-                        </a>
-                      </li>
-                    </ul>
-                    <ul>
-                      <li>
-                        <a href="#">
-                          <img src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg" />
-                          <span>
-                            <b> KASI PEMERINTAHAN & PERLINDUNGAN MASYARAKAT</b>
-                          </span>
-                          <span>
-                            <b>
-                              <u>HERCANUS YHUDA Y. WAROPEN</u>
-                            </b>
-                          </span>
-                          <span>
-                            <b>NIP: 196703102007011027</b>
-                          </span>
-                        </a>
-                        <ul>
-                          <li>
-                            <a href="#">
-                              <img src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg" />
-                              <span>
-                                <b>
-                                  ⁕ <u>FREDERIK C. AWOM</u>
-                                </b>
-                              </span>
-                              <span>
-                                <b>NIP: 01010101010101001</b>
-                              </span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <img src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg" />
-                              <span>
-                                <b>
-                                  ⁕ <u>YUSTUS IKEI</u>
-                                </b>
-                              </span>
-                              <span>
-                                <b>NIP: 19800808122015091001</b>
-                              </span>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-
-                      <li>
-                        <a href="#">
-                          <img src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg" />
-                          <span>
-                            <b>KASI EKONOMI & PEMBANGUNAN</b>
-                          </span>
-                          <span>
-                            <b>
-                              ⁕<u>RACHMAD CAHYADI GOULAP</u>
-                            </b>
-                          </span>
-                          <span>
-                            <b>NIP: 198305242008011009</b>
-                          </span>
-                        </a>
-                        <ul>
-                          <li>
-                            <a href="#">
-                              <img src="https://www.pngmart.com/files/15/Female-office-Worker-PNG-Photos.png" />
-
-                              <span>
-                                <b>
-                                  ⁕<u> MARIANGKE KADOP</u>
-                                </b>
-                              </span>
-                              <span>
-                                <b>NIP: 197906102015092001</b>
-                              </span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <img src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg" />
-
-                              <span>
-                                <b>
-                                  ⁕ <u>YANCE R.MANDACAN</u>
-                                </b>
-                              </span>
-                              <span>
-                                <b>NIP: 197904242005091009</b>
-                              </span>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <img src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg" />
-                          <span>
-                            <b>KASI EKONOMI & PEMBANGUNAN</b>
-                          </span>
-                          <span>
-                            <b>
-                              ⁕<u>RACHMAD CAHYADI GOULAP</u>
-                            </b>
-                          </span>
-                          <span>
-                            <b>NIP: 198305242008011009</b>
-                          </span>
-                        </a>
-                        <ul>
-                          <li>
-                            <a href="#">
-                              <img src="https://www.pngmart.com/files/15/Female-office-Worker-PNG-Photos.png" />
-
-                              <span>
-                                <b>
-                                  ⁕<u> MARIANGKE KADOP</u>
-                                </b>
-                              </span>
-                              <span>
-                                <b>NIP: 197906102015092001</b>
-                              </span>
-                            </a>
-                          </li>
-                          <li>
-                            <a href="#">
-                              <img src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg" />
-
-                              <span>
-                                <b>
-                                  ⁕ <u>YANCE R.MANDACAN</u>
-                                </b>
-                              </span>
-                              <span>
-                                <b>NIP: 197904242005091009</b>
-                              </span>
-                            </a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
+          <Card className="p-4">
+            {" "}
+            {/* Gunakan Card dari Bootstrap */}
+            <div
+              className="section-title text-center position-relative pb-3 mb-5 mx-auto"
+              style={{ maxWidth: "600px" }}
+            >
+              <h5 className="fw-bold text-primary text-uppercase">
+                Pegawai Lurah Amban
+              </h5>
             </div>
-          </div>
-          ;
-        </div>
-      </div>
-      {/* {pegawai.map((item, index) => {
-                      return (
-                        <tr key={index}>
+            <div className="container">
+              <div className="row">
+                <div className="tree">
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <img
+                          src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg"
+                          alt="Lurah Amban"
+                        />
+                        <span>
+                          <b>LURAH AMBAN</b>
+                        </span>
+                        <span>
+                          <b>
+                            <u>ALHEN SORBU, S.STP</u>
+                          </b>
+                        </span>
+                        <span>
+                          <b>NIP: 199304032017081002</b>
+                        </span>
+                      </a>
+                      <ul>
+                        <li>
                           <a href="#">
                             <img
-                              src={`http://localhost:3040/images/${item.image}`}
+                              src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg"
+                              alt="Sekretaris"
                             />
-                            <span>Jabatan:{item.jabatan}</span>
-                            <span>Nama :{item.nama}</span>
-                            <span>NIP : {item.nip}</span>
+                            <span>
+                              <b>SEKRETARIS</b>
+                            </span>
+                            <span>
+                              <b>
+                                <u>RONNY TELENGGEN, S.STP</u>
+                              </b>
+                            </span>
+                            <span>
+                              <b>NIP: 199405122016091004</b>
+                            </span>
                           </a>
-                        </tr>
-                      );
-                    })} */}
+                          <a href="#">
+                            <img
+                              src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg"
+                              alt="Bendahara Lurah"
+                            />
+                            <span>
+                              <b>BENDAHARA LURAH</b>
+                            </span>
+                            <span>
+                              <b>
+                                <u>YUNUS RUMEREK</u>
+                              </b>
+                            </span>
+                            <span>
+                              <b>NIP: 198006052015091001</b>
+                            </span>
+                          </a>
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>
+                          <a href="#">
+                            <img
+                              src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg"
+                              alt="Kasi Pemerintahan & Perlindungan Masyarakat"
+                            />
+                            <span>
+                              <b>
+                                {" "}
+                                KASI PEMERINTAHAN & PERLINDUNGAN MASYARAKAT
+                              </b>
+                            </span>
+                            <span>
+                              <b>
+                                <u>HERCANUS YHUDA Y. WAROPEN</u>
+                              </b>
+                            </span>
+                            <span>
+                              <b>NIP: 196703102007011027</b>
+                            </span>
+                          </a>
+                          <ul>
+                            <li>
+                              <a href="#">
+                                <img
+                                  src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg"
+                                  alt="Fredrik C. Awom"
+                                />
+                                <span>
+                                  <b>
+                                    ⁕ <u>FREDERIK C. AWOM</u>
+                                  </b>
+                                </span>
+                                <span>
+                                  <b>NIP: 01010101010101001</b>
+                                </span>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                <img
+                                  src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg"
+                                  alt="Yustus Ikei"
+                                />
+                                <span>
+                                  <b>
+                                    ⁕ <u>YUSTUS IKEI</u>
+                                  </b>
+                                </span>
+                                <span>
+                                  <b>NIP: 19800808122015091001</b>
+                                </span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+
+                        <li>
+                          <a href="#">
+                            <img
+                              src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg"
+                              alt="Kasi Ekonomi & Pembangunan"
+                            />
+                            <span>
+                              <b>KASI EKONOMI & PEMBANGUNAN</b>
+                            </span>
+                            <span>
+                              <b>
+                                ⁕<u>RACHMAD CAHYADI GOULAP</u>
+                              </b>
+                            </span>
+                            <span>
+                              <b>NIP: 198305242008011009</b>
+                            </span>
+                          </a>
+                          <ul>
+                            <li>
+                              <a href="#">
+                                <img
+                                  src="https://www.pngmart.com/files/15/Female-office-Worker-PNG-Photos.png"
+                                  alt="Mariangke Kadop"
+                                />
+                                <span>
+                                  <b>
+                                    ⁕<u> MARIANGKE KADOP</u>
+                                  </b>
+                                </span>
+                                <span>
+                                  <b>NIP: 197906102015092001</b>
+                                </span>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                <img
+                                  src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg"
+                                  alt="Yance R. Mandacan"
+                                />
+                                <span>
+                                  <b>
+                                    ⁕ <u>YANCE R.MANDACAN</u>
+                                  </b>
+                                </span>
+                                <span>
+                                  <b>NIP: 197904242005091009</b>
+                                </span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <img
+                              src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg"
+                              alt="Kasi Ekonomi & Pembangunan"
+                            />
+                            <span>
+                              <b>KASI EKONOMI & PEMBANGUNAN</b>
+                            </span>
+                            <span>
+                              <b>
+                                ⁕<u>RACHMAD CAHYADI GOULAP</u>
+                              </b>
+                            </span>
+                            <span>
+                              <b>NIP: 198305242008011009</b>
+                            </span>
+                          </a>
+                          <ul>
+                            <li>
+                              <a href="#">
+                                <img
+                                  src="https://www.pngmart.com/files/15/Female-office-Worker-PNG-Photos.png"
+                                  alt="Mariangke Kadop"
+                                />
+                                <span>
+                                  <b>
+                                    ⁕<u> MARIANGKE KADOP</u>
+                                  </b>
+                                </span>
+                                <span>
+                                  <b>NIP: 197906102015092001</b>
+                                </span>
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#">
+                                <img
+                                  src="https://img2.pngdownload.id/20180225/cjq/kisspng-cartoon-illustration-bank-employee-5a925656ac95c6.7702391515195397987069.jpg"
+                                  alt="Yance R. Mandacan"
+                                />
+                                <span>
+                                  <b>
+                                    ⁕ <u>YANCE R.MANDACAN</u>
+                                  </b>
+                                </span>
+                                <span>
+                                  <b>NIP: 197904242005091009</b>
+                                </span>
+                              </a>
+                            </li>
+                          </ul>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </Card>
+        </div>
+      </div>
+
       {/* <!-- Team End --> */}
       {/* <!-- Footer Start --> */}
       <div
