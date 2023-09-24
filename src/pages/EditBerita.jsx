@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { Card, Button } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 
 function EditBerita() {
   const navigate = useNavigate();

@@ -6,6 +6,8 @@ function Profil2() {
   const [sejarah, setSejarah] = useState([]);
   const [visiMisi, setVisiMisi] = useState([]);
   const [pegawai, setPegawai] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetchDataSejarah();
     // Panggil fungsi untuk mengambil data visi dan misi dari backend
@@ -18,9 +20,11 @@ function Profil2() {
       .get("http://localhost:3040/sejarah")
       .then((response) => {
         setSejarah(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching sejarah data:", error);
+        setLoading(false);
       });
   };
   const fetchDataVisiMisi = () => {
@@ -200,39 +204,45 @@ function Profil2() {
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-lg-8 col-md-10 col-sm-12">
-              <div className="mt-3">
-                <Card className="card-stats">
-                  {" "}
-                  {/* Menggunakan Card */}
-                  <Card.Body>
-                    <h2
-                      className="text-center mt-4 section-title position-relative pb-3 mb-5"
-                      style={{ fontSize: "2rem", color: "#207DFF" }}
-                    >
-                      Sejarah Kelurahan Amban
-                    </h2>
-                    <br />
-                    <ul className="jenis-huruf ukuran-huruf">
-                      {sejarah.map((item, index) => (
-                        <li key={index}>
-                          {item.isi
-                            .split("\n")
-                            .map((line, lineIndex) =>
-                              line.startsWith("•") ? (
-                                <span key={lineIndex}>{line.substring(1)}</span>
-                              ) : (
-                                <div
-                                  key={lineIndex}
-                                  dangerouslySetInnerHTML={{ __html: line }}
-                                />
-                              )
-                            )}
-                        </li>
-                      ))}
-                    </ul>
-                  </Card.Body>
-                </Card>
-              </div>
+              {loading ? (
+                <h3 style={{ textAlign: "center" }}>Loading....😁</h3>
+              ) : (
+                <div className="mt-3">
+                  <Card className="card-stats">
+                    {" "}
+                    {/* Menggunakan Card */}
+                    <Card.Body>
+                      <h2
+                        className="text-center mt-4 section-title position-relative pb-3 mb-5"
+                        style={{ fontSize: "2rem", color: "#207DFF" }}
+                      >
+                        Sejarah Kelurahan Amban
+                      </h2>
+                      <br />
+                      <ul className="jenis-huruf ukuran-huruf">
+                        {sejarah.map((item, index) => (
+                          <li key={index}>
+                            {item.isi
+                              .split("\n")
+                              .map((line, lineIndex) =>
+                                line.startsWith("•") ? (
+                                  <span key={lineIndex}>
+                                    {line.substring(1)}
+                                  </span>
+                                ) : (
+                                  <div
+                                    key={lineIndex}
+                                    dangerouslySetInnerHTML={{ __html: line }}
+                                  />
+                                )
+                              )}
+                          </li>
+                        ))}
+                      </ul>
+                    </Card.Body>
+                  </Card>
+                </div>
+              )}
             </div>
           </div>
         </div>

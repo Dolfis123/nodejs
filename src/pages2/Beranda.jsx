@@ -8,6 +8,8 @@ import "../css/profil2.css";
 import "../css/style.css";
 import "../css2/style2.css";
 function Beranda() {
+  const [loading, setLoading] = useState(true);
+
   const [ucapan, setUcapan] = useState([]);
   const navigate = useNavigate([]);
   useEffect(() => {
@@ -16,11 +18,13 @@ function Beranda() {
       .then((response) => {
         if (response.data.Status === "Success") {
           setUcapan(response.data.Result);
+          setLoading(false);
         } else {
           alert("Error");
         }
       })
       .catch((err) => console.log(err));
+    setLoading(false);
   }, []);
 
   return (
@@ -260,55 +264,61 @@ function Beranda() {
       </div>
       {/* Navbar & Carousel End*/}
       {/* <!-- Content Start --> */}
+
       <div className="left-aligned-content animated slideInDown">
-        <div
-          style={{
-            padding: "20px", // Ubah padding
-            backgroundColor: "#FFFFFF",
-            borderRadius: "20px", // Ubah borderRadius
-            margin: "50px",
-            marginBottom: "100px",
-            marginTop: "100px",
-            textAlign: "left", // Teks menjadi rata kiri
-          }}
-        >
-          {ucapan.map((item, index) => (
-            <Card key={index} className="mb-3">
-              <Card.Body className="d-flex align-items-center">
-                <div style={{ flex: 1 }}>
-                  {item.pesan &&
-                    item.pesan
-                      .split("\n")
-                      .map((line, lineIndex) =>
-                        line.startsWith("•") ? (
-                          <li key={lineIndex}>{line.substring(1)}</li>
-                        ) : (
-                          <div
-                            key={lineIndex}
-                            dangerouslySetInnerHTML={{ __html: line }}
-                          />
-                        )
-                      )}
-                </div>
-                <div style={{ flexShrink: 0 }}>
-                  {item.image && (
-                    <img
-                      src={`http://localhost:3040/images/${item.image}`}
-                      alt=""
-                      style={{
-                        maxWidth: "100%", // Membuat gambar responsif
-                        height: "300px", // Menghindari distorsi gambar
-                        borderRadius: "20px", // Ubah borderRadius
-                      }}
-                      className="image-fade-in"
-                    />
-                  )}
-                </div>
-              </Card.Body>
-            </Card>
-          ))}
-        </div>
+        {loading ? (
+          <h3 style={{ textAlign: "center" }}>Loading....😁</h3>
+        ) : (
+          <div
+            style={{
+              padding: "20px", // Ubah padding
+              backgroundColor: "#FFFFFF",
+              borderRadius: "20px", // Ubah borderRadius
+              margin: "50px",
+              marginBottom: "100px",
+              marginTop: "100px",
+              textAlign: "left", // Teks menjadi rata kiri
+            }}
+          >
+            {ucapan.map((item, index) => (
+              <Card key={index} className="mb-3">
+                <Card.Body className="d-flex align-items-center">
+                  <div style={{ flex: 1 }}>
+                    {item.pesan &&
+                      item.pesan
+                        .split("\n")
+                        .map((line, lineIndex) =>
+                          line.startsWith("•") ? (
+                            <li key={lineIndex}>{line.substring(1)}</li>
+                          ) : (
+                            <div
+                              key={lineIndex}
+                              dangerouslySetInnerHTML={{ __html: line }}
+                            />
+                          )
+                        )}
+                  </div>
+                  <div style={{ flexShrink: 0 }}>
+                    {item.image && (
+                      <img
+                        src={`http://localhost:3040/images/${item.image}`}
+                        alt=""
+                        style={{
+                          maxWidth: "100%", // Membuat gambar responsif
+                          height: "300px", // Menghindari distorsi gambar
+                          borderRadius: "20px", // Ubah borderRadius
+                        }}
+                        className="image-fade-in"
+                      />
+                    )}
+                  </div>
+                </Card.Body>
+              </Card>
+            ))}
+          </div>
+        )}
       </div>
+
       {/* <!-- Content End --> */}
 
       {/* <!-- Footer Start --> */}

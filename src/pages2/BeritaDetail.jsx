@@ -185,7 +185,7 @@ function BeritaDetail() {
           }}
         >
           {loading ? (
-            <p style={{ textAlign: "center" }}>Loading...</p>
+            <h3 style={{ textAlign: "center" }}>Loading....😁</h3>
           ) : (
             <div className="card">
               <div
